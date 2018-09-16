@@ -39,6 +39,7 @@ struct Time
 
 struct Pucks
 {
+	bool operator==(const Pucks & Rhs) { return Rhs.Key == Key; }
 	int Key;
 	std::string FerryRecordNumber;
 	
@@ -56,6 +57,8 @@ struct Pucks
 
 	std::string OnlineAirport;
 	std::string OfflineAirport;
+
+	int LandingTime;
 };
 
 struct Tickets

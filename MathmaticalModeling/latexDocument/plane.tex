@@ -110,10 +110,9 @@ $U_{k+1}$ & 第K+1阶段状态 \\ \hline
 登机口的状态和最邻近45分钟之前的登机口的状态有关，故采用模型一的动态规划思想建立出动态转移方程，最后得到最小化登机口数量。
 然后采用深度优先搜索得到的精确的结果进行模型的检验，发现能较好的保证结果的正确性。
 
-由于登机口数据表格可知，不同登机口属性配置皆不相同，某些登机口可以使用多种航班的转场。因此，为了得到分配方案，我们采用贪心算法，
-按照时间顺序依次处理每一个航班，并赋予不同登机口优先级权值，按照权值的大小，分配对应航班，从而获取登机口使用最少分配方案。
-
-
+在将航班分配到登机口的时候会有若干的待选登机口，这些待选的登机口拥有不同的到达和出发类型，而出发类型和到达类型之间并不是
+一一对应的关系，这时如何选择合适的登机口是求解问题1过程的关键。本文根据所提供的数据对每一天不同时刻航班的到达和出发类型
+进行统计并针对不同出发和着陆类型的登机口，定义其对应于不同航线类型下的权值，并通过该权值对登机口进行选择。
 \subsection{问题二分析}
 
 \subsection{问题三分析}
@@ -133,20 +132,69 @@ S_{k+1}=U_{K}\left ( S_{K} \right )
 \end{equation}
 
 \subsubsection{带权值的贪心算法模型}
-通过对登机口数据进行统计和分析，得到登机口属性类型一共为七种，分别为图2中的（1）（4）（5）（6）（7）（8）（9），其数量依次是：21,37,1,1,2,2,5。因此，
-在每次对航班进行选择时，为了保证后续航班的停靠，我们采用如下表所示的权值设计：
-
-\begin{tabular}{c|c|c}
-  \hline
-  \makebox[0.3\textwidth][c]{属性抽象类}	&  \makebox[0.3\textwidth][c]{登机口数量} &  \makebox[0.3\textwidth][c]{权值分配} \\ \hline
-  I/I	     & 21  &  \\ \hline
-  D/D	     & 37  &  \\ \hline
-  I,D/D	   & 1   &  \\ \hline
-  I,D/I	   & 1   &  \\ \hline
-  D/I,D    & 2   &  \\ \hline
-  I/I,D    & 2   &  \\ \hline
-  I,D/I,D  & 5   &  \\ \hline
+假设$I$为国际航班，$D$为国内航班，由数据可以知道登机口的类型有如下几种：
+\begin{equation}
+    \{I,I\},\{D,D\},\{I,DI\},\{DI,DI\},\{DI,D\},\{D,DI\},\{DI,I\}
+\end{equation}
+而航班的类型总共有下面4种：
+\begin{equation}
+    \{I,I\},\{D,D\},\{D,I\},\{I,D\}
+\end{equation}
+观察上面的结果我们可以发现，在上述的登机口类型中并没有$\{I,D\}$和$\{D,I\}$这两种类型，因此我们只能选择
+$\{I,DI\},\{DI,DI\},\{DI,D\},\{D,DI\},\{DI,I\}$类型的登机口停放这两种类型的飞机，这些类型的登机
+口总共只有11个，而$\{D,D\}$和$\{I,I\}$类型登机口的数量则较多。因此我们在为航班选择登机口的时候应该尽
+可能地指定最适合它的登机口并且尽可能地增大其它的航班可选择的余地。
+对于类型为$\{I,I\}$的航班，其可停靠的登机口类型为$\{I,DI\},\{DI,DI\},\{DI,I\}$和$\{I,I\}$，根据
+前文的论述可以得到：
+\begin{table*}[!hbp]
+\centering
+\caption{$\{I, I\}$类型航班对应不同登机口的权值}
+\begin{tabular}{|c|c|c|c|}
+    \hline  
+    $\{I, I\}$ & $\{DI, I\}$ & $\{I, DI\}$ & $\{DI, DI\}$\\
+    \hline 
+    3&2&2&1\\
+    \hline 
 \end{tabular}
+\end{table*}
+
+
+同理可以得到其它类型航班下不同类型登机口的权重。
+
+\begin{table*}[!hbp]
+    \centering
+    \caption{$\{D, D\}$类型航班对应不同登机口的权值}
+    \begin{tabular}{|c|c|c|c|}
+        \hline  
+        $\{D, D\}$ & $\{DI, D\}$ & $\{D, DI\}$ & $\{DI, DI\}$\\
+        \hline 
+        3&2&2&1\\
+        \hline 
+    \end{tabular}
+\end{table*}
+\begin{table*}[!hbp]
+    \centering
+    \caption{$\{D, I\}$类型航班对应不同登机口的权值}
+    \begin{tabular}{|c|c|c|}
+        \hline  
+        $\{DI, I\}$ & $\{D, DI\}$ & $\{DI, DI\}$\\
+        \hline 
+        2&2&1\\
+        \hline 
+    \end{tabular}
+\end{table*}
+
+\begin{table*}[!hbp]
+    \centering
+    \caption{$\{I, D\}$类型航班对应不同登机口的权值}
+    \begin{tabular}{|c|c|c|}
+        \hline  
+        $\{I, DI\}$ & $\{DI, D\}$ & $\{DI, DI\}$\\
+        \hline 
+        2&2&1\\
+        \hline 
+    \end{tabular}
+\end{table*}
 
 带权值的贪心算法模型流程如下图3所示
 \begin{figure}[!h]
@@ -187,6 +235,117 @@ begin{itemize}
 \subsection{模型的缺点}
 \subsection{模型的改进}
 \subsection{模型的推广}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+带权值的贪心算法模型流程如下图3所示
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.9\textwidth]{Figure3.jpg}
+\caption{带权值贪心算法流程图}
+\end{figure}
+如上图所示，整个算法的流程主要分为三步：
+begin{itemize}
+\item \textbf{Step1}-对20号所有航班的到达时间进行排序，从第一个航班$P_{i}$开始，根据属性条件以及权值参数$Gw$确认停放登机口，并将使用的
+登机口数量$G_{n}$+1
+\item \textbf{Step2}-处理航班$P_{i+1}$,遍历空闲航班$G_{s}$, 若存在满足航班属性要求的登机口，则选取权值最高的登机口，$G_{n}$不变。否则
+查看剩余未开放的登机口$Gu$，若存在满足航班属性要求的登机口，则开放此登机口用于停放，$G_{n}$+1。如果皆找不到满足条件的登机口，则开放临时
+机位用于停靠,$G_{n}$不变。
+\item \textbf{Step3}-若处理完所有航班，则输出$G_{n}$，否则重复\textbf{Step2}。
+
+\end{itemize}
+
+
+
+
+\subsection{对数据应用模型并求解}
+\subsubsection{单独考虑最小化登机口数量的求解}
+(1)动态规划思想的模型
+
+先将登机口的属性抽象为II-W,II-N,ID-W,ID-N,DI-W,DI-N,DD-W,DD-N八种类型，然后根据题目中所给表中的数据将每个航班到达时刻
+当前八种类型的正在使用数目和空闲数目更新，统计八种类型数目的总和并将每个时刻类型对应数目存入Excel表以作后续分析。模型需要
+对python筛选出的303次航班数据进行遍历，每次需要更新二维数组，并将每次结果存入临时数组。算法主要时间耗费在遍历上，复杂度为O(n)，
+模型的实现具有可行性，耗费的时间不长。
+具体代码见附录
+
+
+\subsection{考虑中转旅客最短流程时间的求解}
+\subsection{考虑中转旅客的换乘时间的求解}
+\section{模型的评价}
+\subsection{模型的优点}
+
+\subsection{模型的缺点}
+\subsection{模型的改进}
+\subsection{模型的推广}
+
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> .theirs
+\bibliographystyle{gmcm}
+\bibliography{example}
+
+
+
 
 \bibliographystyle{gmcm}
 \bibliography{example}
