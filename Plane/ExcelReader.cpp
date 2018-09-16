@@ -130,6 +130,12 @@ std::vector<Gates> ExcelReader::ParseGates(std::vector<std::vector<std::string>>
 		Gates Gate;
 
 		Gate.Key = atoi(Row[0].substr(1).c_str());
+
+		if (Row[0].substr(0, 1) == "S")
+		{
+			Gate.Key += 28;
+		}
+
 		Gate.BoardingGate = Row[0];
 
 		Gate.Terminal = Row[1] == "T" ? TERMINAL::T : TERMINAL::S;

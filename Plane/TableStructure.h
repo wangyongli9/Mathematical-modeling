@@ -123,12 +123,6 @@ inline bool CanPlaneLand(Pucks Plane, Gates Gate)
 	}
 }
 
-/*
-	@note Minus two input time, time1 must be after time2 -> time1 - time2
-	@param T1 Time1
-	@param T2 Time2
-	@return Minutes between two input time, -1 when time1 < time2 or input is illegal
-*/
 inline int TimeMinus(Time T1, Time T2)
 {
 	int H1 = T1.Hour, M1 = T1.Minutes, H2 = T2.Hour, M2 = T2.Minutes;
@@ -153,13 +147,7 @@ inline int TimeMinus(Time T1, Time T2)
 	return M1 + (H1 - H2) * 60 - M2;
 }
 
-/*
-	@note Minus two input date, date1 must be after date2 -> date1 - date2
-	@param Date1
-	@param Date2
-	@return Minutes between two input time, -1 when date1 < date2 or input is illegal
-*/
-inline int DateMinus(Date Date1, Date Date2)
+inline int Minus(Date Date1, Time Time1, Date Date2, Time Time2)
 {
 	int Y1 = Date1.Year, Y2 = Date2.Year;
 	int M1 = Date1.Month, M2 = Date2.Month;
@@ -168,5 +156,13 @@ inline int DateMinus(Date Date1, Date Date2)
 	if (Y1 != Y2) { return -1; }
 	if (M1 != M2) { return -1; }
 	if (D1 < D2) { return -1; }
-	return D1 - D2;
+
+	if (D1 == D2)
+	{
+		return TimeMinus(Time1, Time2);
+	}
+	else
+	{
+		return (Time1.Hour * 60 + Time1.Minutes) + (D1 - D2) * 24 * 60 - (Time2.Hour * 60 + Time2.Minutes);
+	}
 }
