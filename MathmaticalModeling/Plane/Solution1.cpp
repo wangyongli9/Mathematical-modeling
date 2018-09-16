@@ -194,14 +194,28 @@ int Solution1Weighted(
 				auto LandedPlaneDepartureDate = GatesStates[GateIndex].first;
 				auto LandedPlaneDepartureTime = GatesStates[GateIndex].second;
 
+				//for (auto & PuckInBackupGate : BackupGate)
+				//{
+				//	if (Minus(Puck[i].ArrivingDate, Puck[i].ArrivingTime, PuckInBackupGate.DepartureDate, PuckInBackupGate.DepartureTime) >= 45)
+				//	{
+				//		BackupGate.erase(std::remove(BackupGate.begin(), BackupGate.end(), PuckInBackupGate), BackupGate.end());
+				//		BackupGate.push_back(Puck[i]);
+				//		IsFindGate = true;
+				//		goto JumpOut;
+				//	}
+				//}
+
 				int DeltaTime = Minus(ArrivingDate, ArrivingTime, LandedPlaneDepartureDate, LandedPlaneDepartureTime);
 
-				if (DeltaTime >= 45 /*&& Puck[i].LandingTime < 500*/)
+				if (DeltaTime >= 45)
 				{
 					GatesStates[GateIndex].first = Puck[i].DepartureDate;
 					GatesStates[GateIndex].second = Puck[i].DepartureTime;
 					GatesUsed[GateIndex] = true;
 					IsFindGate = true;
+
+					printf("Puck[%s] landed in Gate[%s].\n", Puck[i].FerryRecordNumber.c_str(), Gate[GateIndex].BoardingGate.c_str());
+
 					goto JumpOut;
 				}
 			}
@@ -211,8 +225,23 @@ int Solution1Weighted(
 
 		if (!IsFindGate)
 		{
-			BackupGate.push_back(Puck[i]);
-			IsFindGate = true;
+			bool IsFindBackupGate = false;
+			for (auto & PuckInBackupGate : BackupGate)
+			{
+				if (Minus(Puck[i].ArrivingDate, Puck[i].ArrivingTime, PuckInBackupGate.DepartureDate, PuckInBackupGate.DepartureTime) >= 45)
+				{
+					BackupGate.erase(std::remove(BackupGate.begin(), BackupGate.end(), PuckInBackupGate), BackupGate.end());
+					BackupGate.push_back(Puck[i]);
+					IsFindBackupGate = true;
+					printf("Puck[%s] landed in a spare backup gate.\n", Puck[i].FerryRecordNumber.c_str());
+				}
+			}
+
+			if (!IsFindBackupGate)
+			{
+				BackupGate.push_back(Puck[i]);
+				printf("Puck[%s] landed in a new backup gate.\n", Puck[i].FerryRecordNumber.c_str());
+			}
 		}
 	}
 
@@ -225,8 +254,12 @@ int Solution1Weighted(
 		}
 	}
 
+	printf("Number of gate in the terminal : %d.\n", UsedGateNumber);
+	printf("Number of backup gate : %zd.\n", BackupGate.size());
+
 	return UsedGateNumber + BackupGate.size();
 }
+
 int Solution1MaxValue(
 	const std::vector<Pucks> & Puck,
 	const std::vector<Tickets> & Ticket,
