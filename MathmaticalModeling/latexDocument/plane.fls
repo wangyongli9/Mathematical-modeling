@@ -259,9 +259,6 @@ INPUT d:/program/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT d:/program/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
 OUTPUT plane.xdv
 INPUT figures/title.pdf
-INPUT plane.toc
-INPUT plane.toc
-OUTPUT plane.toc
 INPUT figures/Figure1.png
 INPUT figures/Figure2.jpg
 INPUT figures/Figure3.jpg
