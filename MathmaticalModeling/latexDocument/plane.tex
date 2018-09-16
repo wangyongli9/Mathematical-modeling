@@ -102,7 +102,10 @@ $U_{k+1}$ & 第K+1阶段状态 \\ \hline
 登机口的状态和最邻近45分钟之前的登机口的状态有关，故采用模型一的动态规划思想建立出动态转移方程，最后得到最小化登机口数量。
 然后采用深度优先搜索得到的精确的结果进行模型的检验，发现能较好的保证结果的正确性。
 
-
+在将航班分配到登机口的时候会有若干的待选登机口，这些待选的登机口拥有不同的到达和出发类型，而出发类型和到达类型之间并不是
+一一对应的关系，这时如何选择合适的登机口是求解问题1过程的关键。本文根据所提供的数据对每一天不同时刻航班的到达和出发类型
+进行统计并针对不同出发和着陆类型的登机口，定义其对应于不同航线类型下的权值，并通过该权值对登机口进行选
+择。
 
 \subsection{问题二分析}
 
@@ -119,6 +122,75 @@ $U_{k+1}$ & 第K+1阶段状态 \\ \hline
 \begin{equation}
 S_{k+1}=U_{K}\left ( S_{K} \right )
 \end{equation}
+
+\subsubsection{登机口的权值}
+假设$I$为国际航班，$D$为国内航班，由数据可以知道登机口的类型有如下几种：
+\begin{equation}
+    \{I,I\},\{D,D\},\{I,DI\},\{DI,DI\},\{DI,D\},\{D,DI\},\{DI,I\}
+\end{equation}
+而航班的类型总共有下面4种：
+\begin{equation}
+    \{I,I\},\{D,D\},\{D,I\},\{I,D\}
+\end{equation}
+观察上面的结果我们可以发现，在上述的登机口类型中并没有$\{I,D\}$和$\{D,I\}$这两种类型，因此我们只能选择
+$\{I,DI\},\{DI,DI\},\{DI,D\},\{D,DI\},\{DI,I\}$类型的登机口停放这两种类型的飞机，这些类型的登机
+口总共只有11个，而$\{D,D\}$和$\{I,I\}$类型登机口的数量则较多。因此我们在为航班选择登机口的时候应该尽
+可能地指定最适合它的登机口并且尽可能地增大其它的航班可选择的余地。
+对于类型为$\{I,I\}$的航班，其可停靠的登机口类型为$\{I,DI\},\{DI,DI\},\{DI,I\}$和$\{I,I\}$，根据
+前文的论述可以得到：
+\begin{table*}[!hbp]
+\centering
+\caption{$\{I, I\}$类型航班对应不同登机口的权值}
+\begin{tabular}{|c|c|c|c|}
+    \hline  
+    $\{I, I\}$ & $\{DI, I\}$ & $\{I, DI\}$ & $\{DI, DI\}$\\
+    \hline 
+    3&2&2&1\\
+    \hline 
+\end{tabular}
+\end{table*}
+
+同理可以得到其它类型航班下不同类型登机口的权重。
+
+\begin{table*}[!hbp]
+    \centering
+    \caption{$\{D, D\}$类型航班对应不同登机口的权值}
+    \begin{tabular}{|c|c|c|c|}
+        \hline  
+        $\{D, D\}$ & $\{DI, D\}$ & $\{D, DI\}$ & $\{DI, DI\}$\\
+        \hline 
+        3&2&2&1\\
+        \hline 
+    \end{tabular}
+\end{table*}
+
+\bibliographystyle{gmcm}
+\bibliography{example}
+
+\begin{table*}[!hbp]
+    \centering
+    \caption{$\{D, I\}$类型航班对应不同登机口的权值}
+    \begin{tabular}{|c|c|c|}
+        \hline  
+        $\{DI, I\}$ & $\{D, DI\}$ & $\{DI, DI\}$\\
+        \hline 
+        2&2&1\\
+        \hline 
+    \end{tabular}
+\end{table*}
+
+\begin{table*}[!hbp]
+    \centering
+    \caption{$\{I, D\}$类型航班对应不同登机口的权值}
+    \begin{tabular}{|c|c|c|}
+        \hline  
+        $\{I, DI\}$ & $\{DI, D\}$ & $\{DI, DI\}$\\
+        \hline 
+        2&2&1\\
+        \hline 
+    \end{tabular}
+\end{table*}
+
 
 
 \bibliographystyle{gmcm}
