@@ -1,6 +1,6 @@
 from DataRead import Data
 import queue
-
+from pandas import DataFrame
 
 class Main():
     def sequencePlane(self, planeList):
@@ -14,14 +14,19 @@ class Main():
         DDNqueue = queue.PriorityQueue()
         DDWqueue = queue.PriorityQueue()
         QueueList = [IINqueue, IIWqueue, IDNqueue, IDWqueue, DINqueue, DIWqueue, DDNqueue, DDWqueue]
-        for plane in planeList:
+        names = ["IIN1","IIN0","IIW1","IIW0","IDN1","IDN0","IDW1","IDW0","DIN1","DIN0","DIW1","DIW0","DDN1","DDN0","DDW1","DDW0"]
+        excelData = {"IIN1":[],"IIN0":[],"IIW1":[],"IIW0":[],"IDN1":[],"IDN0":[],"IDW1":[],"IDW0":[],"DIN1":[],"DIN0":[],"DIW1":[],"DIW0":[],"DDN1":[],
+                     "DDN0":[],"DDW1":[],"DDW0":[]}
+        for i,plane in enumerate(planeList):
             index = (plane.gateAttribute - 1 ) * 2 + plane.widthAttribute
             self.dealQueue(gateStatus, index, QueueList[index], plane)
             gateString = ""
             for i in range(len(gateStatus)):
                 gateString += str(gateStatus[i][0]) +  "/" +str(gateStatus[i][1]) + "     "
-            print(gateString)
-
+                excelData[names[2 * i]].append(gateStatus[i][0])
+                excelData[names[2 * i + 1]].append(gateStatus[i][1])
+        df = DataFrame(excelData,columns=names)
+        df.to_excel("./DataSet/PlaneNeed.xlsx")
 
 
     def dealQueue(self, gateStatus, index, planeQueue, plane):
