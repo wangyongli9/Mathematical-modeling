@@ -74,6 +74,8 @@ std::vector<Pucks> ExcelReader::ParsePucks(std::vector<std::vector<std::string>>
 		Puck.OnlineAirport = Row[10];
 		Puck.OfflineAirport = Row[11];
 
+		Puck.LandingTime = Minus(Puck.DepartureDate, Puck.DepartureTime, Puck.ArrivingDate, Puck.ArrivingTime);
+
 		Data.push_back(Puck);
 	}
 
