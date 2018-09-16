@@ -2,7 +2,6 @@
 %!TEX program  = xelatex
 
 \documentclass[bwprint]{gmcmthesis}
-\usepackage{CJK}
 \usepackage{color}
 \title{航站楼扩增评估}
 \baominghao{4321} %参赛队号
@@ -75,11 +74,15 @@
  G	    & 当前可用登机口  \\ \hline
  PL	    & 当前停靠登机口飞机  \\ \hline
  GL	    & 当前空闲飞机  \\ \hline
+
+
  K      & K阶段 \\ \hline
  K+1    & K+1 \\ \hline
 $S_{k}$   & 第K阶段状态 \\ \hline
 $U_{k}$   & 第K阶段决策 \\ \hline
 $U_{k+1}$ & 第K+1阶段状态 \\ \hline
+
+
 
 \end{tabular}
 
@@ -98,6 +101,9 @@ $U_{k+1}$ & 第K+1阶段状态 \\ \hline
 问题1要求建立出能保证在尽可能多地分配航班到合适的登机口的同时，最小化登机口的数量。对于本文所提供的20号航班数据，某时刻
 登机口的状态和最邻近45分钟之前的登机口的状态有关，故采用模型一的动态规划思想建立出动态转移方程，最后得到最小化登机口数量。
 然后采用深度优先搜索得到的精确的结果进行模型的检验，发现能较好的保证结果的正确性。
+
+
+
 \subsection{问题二分析}
 
 \subsection{问题三分析}
@@ -106,14 +112,13 @@ $U_{k+1}$ & 第K+1阶段状态 \\ \hline
 
 \subsection{最小化登机口数量模型}
 \subsubsection{动态规划思想的运筹学模型}
-
-%参考文献   手工录入
-%\begin{thebibliography}{9}%宽度9
-% \bibitem{bib:one} ....
-% \bibitem{bib:two} ....
-%\end{thebibliography}
-
-%采用bibtex方案
+动态规划算法一般用来求解具有某种最优性质的问题。这类问题中往往有
+许多可行解，需要从这些子问题的解得到原问题的解。
+此模型多阶段决策问题，这类问题的活动过程能够分为多个相互联系的阶段，在每一个阶段都需要采取相应措施，一个阶段的决策被定义以后会影响下一个阶段的决策。最终把各个阶段的决策结合起来构成一个决策序列，称为策略。各个阶段不同的决策导致了有许多策略供我们选择，每个策略的活动效果可以用数量来确定。此问题要求在选择的那些策略中间，选取一个最优策略以达到最好的效果。 此题适用于用此运筹学模型求解。
+相对应的动态转移方程为
+\begin{equation}
+S_{k+1}=U_{K}\left ( S_{K} \right )
+\end{equation}
 
 
 \bibliographystyle{gmcm}
