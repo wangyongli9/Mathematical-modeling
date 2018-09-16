@@ -301,5 +301,5 @@ Puck[PK498] landed in a new backup gate.
 Puck[PK499] landed in a new backup gate.
 Puck[PK500] landed in a new backup gate.
 Puck[PK501] landed in a new backup gate.
-Number of gate in the terminal : 67.
+Number of gate in the terminal : 67. S = 39 T = 28
 Number of backup gate : 50.

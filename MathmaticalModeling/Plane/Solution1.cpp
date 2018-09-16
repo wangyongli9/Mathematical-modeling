@@ -153,6 +153,7 @@ int Solution1Weighted(
 	std::vector<std::pair<Date, Time>> GatesStates(Gate.size(), std::make_pair(Date{ 2018, 1, 1 }, Time{ 0, 0 }));
 	std::vector<bool> GatesUsed(Gate.size(), false);
 	std::vector<Pucks> BackupGate;
+	int SNum = 0, TNum = 0;
 
 	for (size_t i = 0; i < Puck.size(); i++)
 	{
@@ -202,6 +203,12 @@ int Solution1Weighted(
 					GatesStates[GateIndex].second = Puck[i].DepartureTime;
 					GatesUsed[GateIndex] = true;
 					IsFindGate = true;
+
+					if (DeltaTime > 20000)
+					{
+						if (Gate[GateIndex].Terminal == TERMINAL::S) SNum++;
+						if (Gate[GateIndex].Terminal == TERMINAL::T) TNum++;
+					}
 
 					printf("Puck[%s] landed in Gate[%s].\n", Puck[i].FerryRecordNumber.c_str(), Gate[GateIndex].BoardingGate.c_str());
 
