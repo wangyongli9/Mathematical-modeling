@@ -1,2 +1,0 @@
-# Mathematical-modeling
-Math balabala

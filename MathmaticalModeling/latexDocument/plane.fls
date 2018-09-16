@@ -1,4 +1,4 @@
-PWD D:/work/mathmaticalModeling/latexDocument
+PWD D:/work/gitRepository/MathmaticalModeling/latexDocument
 INPUT d:/program/texlive/2018/texmf-var/web2c/xetex/xelatex.fmt
 INPUT plane.tex
 OUTPUT plane.log
@@ -262,7 +262,7 @@ INPUT figures/title.pdf
 INPUT plane.toc
 INPUT plane.toc
 OUTPUT plane.toc
-INPUT figures/1.png
+INPUT figures/Figure1.png
 INPUT d:/program/texlive/2018/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT d:/program/texlive/2018/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT plane.aux
