@@ -194,17 +194,6 @@ int Solution1Weighted(
 				auto LandedPlaneDepartureDate = GatesStates[GateIndex].first;
 				auto LandedPlaneDepartureTime = GatesStates[GateIndex].second;
 
-				//for (auto & PuckInBackupGate : BackupGate)
-				//{
-				//	if (Minus(Puck[i].ArrivingDate, Puck[i].ArrivingTime, PuckInBackupGate.DepartureDate, PuckInBackupGate.DepartureTime) >= 45)
-				//	{
-				//		BackupGate.erase(std::remove(BackupGate.begin(), BackupGate.end(), PuckInBackupGate), BackupGate.end());
-				//		BackupGate.push_back(Puck[i]);
-				//		IsFindGate = true;
-				//		goto JumpOut;
-				//	}
-				//}
-
 				int DeltaTime = Minus(ArrivingDate, ArrivingTime, LandedPlaneDepartureDate, LandedPlaneDepartureTime);
 
 				if (DeltaTime >= 45)
@@ -234,6 +223,7 @@ int Solution1Weighted(
 					BackupGate.push_back(Puck[i]);
 					IsFindBackupGate = true;
 					printf("Puck[%s] landed in a spare backup gate.\n", Puck[i].FerryRecordNumber.c_str());
+					break;
 				}
 			}
 
