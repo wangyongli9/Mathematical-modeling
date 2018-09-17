@@ -26,6 +26,7 @@ enum class BODY_TYPE
 
 struct Date
 {
+	bool operator!=(const Date & Rhs) { return Rhs.Year != Year || Rhs.Month != Month || Rhs.Day != Day; }
 	int Year;
 	int Month;
 	int Day;
@@ -33,6 +34,7 @@ struct Date
 
 struct Time
 {
+	bool operator!=(const Time & Rhs) { return Rhs.Hour != Hour || Rhs.Minutes != Minutes; }
 	int Hour;
 	int Minutes;
 };

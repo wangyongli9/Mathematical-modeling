@@ -5,6 +5,7 @@
 #include <tuple>
 #include <map>
 #include <algorithm>
+#include <fstream>
 #include "TableStructure.h"
 
 int Solution1BruteForce(

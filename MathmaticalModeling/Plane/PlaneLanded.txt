@@ -1,0 +1,305 @@
+Puck[PK062] landed in Gate[T7].
+Puck[PK072] landed in Gate[T22].
+Puck[PK089] landed in Gate[T6].
+Puck[PK094] landed in Gate[T23].
+Puck[PK102] landed in Gate[T8].
+Puck[PK104] landed in Gate[T24].
+Puck[PK106] landed in Gate[T25].
+Puck[PK107] landed in Gate[T5].
+Puck[PK108] landed in Gate[T2].
+Puck[PK112] landed in Gate[T20].
+Puck[PK117] landed in Gate[T9].
+Puck[PK129] landed in Gate[T3].
+Puck[PK131] landed in Gate[T4].
+Puck[PK136] landed in Gate[T21].
+Puck[PK142] landed in a new backup gate.
+Puck[PK144] landed in Gate[T1].
+Puck[PK145] landed in Gate[T10].
+Puck[PK147] landed in Gate[T11].
+Puck[PK148] landed in a new backup gate.
+Puck[PK149] landed in Gate[S11].
+Puck[PK150] landed in Gate[T12].
+Puck[PK151] landed in a new backup gate.
+Puck[PK155] landed in Gate[T13].
+Puck[PK156] landed in a new backup gate.
+Puck[PK159] landed in Gate[T26].
+Puck[PK165] landed in a new backup gate.
+Puck[PK168] landed in Gate[T14].
+Puck[PK170] landed in Gate[T15].
+Puck[PK171] landed in Gate[T16].
+Puck[PK173] landed in Gate[T17].
+Puck[PK174] landed in Gate[T18].
+Puck[PK175] landed in Gate[T19].
+Puck[PK177] landed in a new backup gate.
+Puck[PK178] landed in a new backup gate.
+Puck[PK179] landed in Gate[S1].
+Puck[PK180] landed in Gate[S2].
+Puck[PK181] landed in Gate[S3].
+Puck[PK182] landed in Gate[S4].
+Puck[PK183] landed in a new backup gate.
+Puck[PK184] landed in Gate[S5].
+Puck[PK185] landed in a new backup gate.
+Puck[PK186] landed in a new backup gate.
+Puck[PK187] landed in Gate[S6].
+Puck[PK188] landed in Gate[S7].
+Puck[PK189] landed in a new backup gate.
+Puck[PK190] landed in a new backup gate.
+Puck[PK191] landed in Gate[S8].
+Puck[PK192] landed in Gate[S9].
+Puck[PK193] landed in Gate[S10].
+Puck[PK194] landed in Gate[S14].
+Puck[PK195] landed in Gate[S15].
+Puck[PK196] landed in Gate[S16].
+Puck[PK197] landed in Gate[S17].
+Puck[PK208] landed in Gate[T27].
+Puck[PK253] landed in Gate[T21].
+Puck[PK254] landed in Gate[T9].
+Puck[PK255] landed in a spare backup gate.
+Puck[PK256] landed in Gate[T11].
+Puck[PK257] landed in a spare backup gate.
+Puck[PK258] landed in a spare backup gate.
+Puck[PK259] landed in Gate[T12].
+Puck[PK260] landed in Gate[T1].
+Puck[PK261] landed in Gate[S11].
+Puck[PK262] landed in a spare backup gate.
+Puck[PK263] landed in a spare backup gate.
+Puck[PK264] landed in Gate[T13].
+Puck[PK265] landed in a spare backup gate.
+Puck[PK266] landed in Gate[T14].
+Puck[PK267] landed in Gate[T15].
+Puck[PK268] landed in a spare backup gate.
+Puck[PK269] landed in a spare backup gate.
+Puck[PK270] landed in a spare backup gate.
+Puck[PK271] landed in Gate[T20].
+Puck[PK272] landed in Gate[T16].
+Puck[PK273] landed in Gate[T17].
+Puck[PK274] landed in Gate[S12].
+Puck[PK275] landed in Gate[S13].
+Puck[PK276] landed in Gate[T12].
+Puck[PK277] landed in Gate[T18].
+Puck[PK278] landed in a spare backup gate.
+Puck[PK279] landed in Gate[T19].
+Puck[PK280] landed in Gate[T24].
+Puck[PK281] landed in a spare backup gate.
+Puck[PK282] landed in Gate[T15].
+Puck[PK283] landed in Gate[T14].
+Puck[PK284] landed in Gate[T9].
+Puck[PK285] landed in a spare backup gate.
+Puck[PK286] landed in Gate[T21].
+Puck[PK287] landed in Gate[T1].
+Puck[PK288] landed in Gate[T17].
+Puck[PK289] landed in a spare backup gate.
+Puck[PK290] landed in a spare backup gate.
+Puck[PK291] landed in Gate[T20].
+Puck[PK292] landed in Gate[S11].
+Puck[PK293] landed in Gate[T11].
+Puck[PK294] landed in Gate[T12].
+Puck[PK295] landed in a spare backup gate.
+Puck[PK296] landed in a spare backup gate.
+Puck[PK297] landed in Gate[T13].
+Puck[PK298] landed in Gate[T8].
+Puck[PK299] landed in Gate[T10].
+Puck[PK300] landed in Gate[T18].
+Puck[PK301] landed in a spare backup gate.
+Puck[PK302] landed in Gate[S12].
+Puck[PK303] landed in a spare backup gate.
+Puck[PK304] landed in Gate[T6].
+Puck[PK305] landed in Gate[S1].
+Puck[PK306] landed in Gate[S2].
+Puck[PK307] landed in Gate[S3].
+Puck[PK308] landed in Gate[T23].
+Puck[PK309] landed in Gate[T9].
+Puck[PK310] landed in Gate[T14].
+Puck[PK311] landed in a spare backup gate.
+Puck[PK312] landed in Gate[T21].
+Puck[PK313] landed in a spare backup gate.
+Puck[PK314] landed in a spare backup gate.
+Puck[PK315] landed in Gate[S4].
+Puck[PK316] landed in Gate[T24].
+Puck[PK317] landed in a spare backup gate.
+Puck[PK318] landed in Gate[T1].
+Puck[PK319] landed in a spare backup gate.
+Puck[PK320] landed in Gate[T17].
+Puck[PK321] landed in a spare backup gate.
+Puck[PK322] landed in a spare backup gate.
+Puck[PK323] landed in Gate[S5].
+Puck[PK324] landed in a new backup gate.
+Puck[PK325] landed in Gate[T11].
+Puck[PK326] landed in Gate[T12].
+Puck[PK327] landed in a spare backup gate.
+Puck[PK328] landed in Gate[T25].
+Puck[PK329] landed in a spare backup gate.
+Puck[PK330] landed in a new backup gate.
+Puck[PK331] landed in Gate[T5].
+Puck[PK332] landed in a new backup gate.
+Puck[PK333] landed in Gate[T2].
+Puck[PK334] landed in Gate[S11].
+Puck[PK335] landed in Gate[T9].
+Puck[PK336] landed in Gate[T6].
+Puck[PK337] landed in Gate[T21].
+Puck[PK338] landed in Gate[T3].
+Puck[PK339] landed in Gate[T10].
+Puck[PK340] landed in Gate[T4].
+Puck[PK341] landed in Gate[T7].
+Puck[PK342] landed in Gate[T8].
+Puck[PK343] landed in a spare backup gate.
+Puck[PK344] landed in a spare backup gate.
+Puck[PK345] landed in Gate[T14].
+Puck[PK346] landed in Gate[T15].
+Puck[PK347] landed in Gate[T26].
+Puck[PK348] landed in Gate[T22].
+Puck[PK349] landed in Gate[T27].
+Puck[PK350] landed in Gate[T20].
+Puck[PK351] landed in a spare backup gate.
+Puck[PK352] landed in a spare backup gate.
+Puck[PK353] landed in a spare backup gate.
+Puck[PK354] landed in a spare backup gate.
+Puck[PK355] landed in Gate[T11].
+Puck[PK356] landed in Gate[T13].
+Puck[PK357] landed in Gate[T10].
+Puck[PK358] landed in Gate[S11].
+Puck[PK359] landed in Gate[T9].
+Puck[PK360] landed in Gate[T12].
+Puck[PK361] landed in a spare backup gate.
+Puck[PK362] landed in Gate[T16].
+Puck[PK363] landed in Gate[T28].
+Puck[PK364] landed in Gate[T21].
+Puck[PK365] landed in a spare backup gate.
+Puck[PK366] landed in a spare backup gate.
+Puck[PK367] landed in Gate[T7].
+Puck[PK368] landed in a spare backup gate.
+Puck[PK369] landed in Gate[T17].
+Puck[PK370] landed in Gate[S31].
+Puck[PK371] landed in Gate[T1].
+Puck[PK372] landed in a spare backup gate.
+Puck[PK373] landed in Gate[S32].
+Puck[PK374] landed in a spare backup gate.
+Puck[PK375] landed in a spare backup gate.
+Puck[PK376] landed in Gate[T18].
+Puck[PK377] landed in Gate[S33].
+Puck[PK378] landed in a spare backup gate.
+Puck[PK379] landed in a spare backup gate.
+Puck[PK380] landed in Gate[T19].
+Puck[PK381] landed in Gate[S1].
+Puck[PK382] landed in Gate[S34].
+Puck[PK383] landed in Gate[S2].
+Puck[PK384] landed in a spare backup gate.
+Puck[PK385] landed in Gate[S3].
+Puck[PK386] landed in Gate[S13].
+Puck[PK387] landed in Gate[S4].
+Puck[PK388] landed in Gate[T22].
+Puck[PK389] landed in Gate[T20].
+Puck[PK390] landed in Gate[T11].
+Puck[PK391] landed in Gate[S12].
+Puck[PK392] landed in Gate[S5].
+Puck[PK393] landed in a spare backup gate.
+Puck[PK394] landed in Gate[S6].
+Puck[PK395] landed in Gate[S7].
+Puck[PK396] landed in Gate[T9].
+Puck[PK397] landed in a spare backup gate.
+Puck[PK398] landed in Gate[T12].
+Puck[PK399] landed in Gate[T16].
+Puck[PK400] landed in Gate[T23].
+Puck[PK401] landed in Gate[S8].
+Puck[PK402] landed in a spare backup gate.
+Puck[PK403] landed in Gate[S9].
+Puck[PK404] landed in a spare backup gate.
+Puck[PK405] landed in a new backup gate.
+Puck[PK406] landed in Gate[S10].
+Puck[PK407] landed in Gate[S14].
+Puck[PK408] landed in Gate[S15].
+Puck[PK409] landed in Gate[S11].
+Puck[PK410] landed in Gate[S16].
+Puck[PK411] landed in Gate[T24].
+Puck[PK412] landed in Gate[T15].
+Puck[PK413] landed in Gate[T14].
+Puck[PK414] landed in Gate[T19].
+Puck[PK415] landed in Gate[T22].
+Puck[PK416] landed in Gate[T21].
+Puck[PK417] landed in Gate[T18].
+Puck[PK418] landed in Gate[S3].
+Puck[PK419] landed in Gate[T7].
+Puck[PK420] landed in a spare backup gate.
+Puck[PK421] landed in a spare backup gate.
+Puck[PK422] landed in Gate[T9].
+Puck[PK423] landed in Gate[T13].
+Puck[PK424] landed in Gate[T17].
+Puck[PK425] landed in Gate[S1].
+Puck[PK426] landed in a spare backup gate.
+Puck[PK427] landed in a spare backup gate.
+Puck[PK428] landed in Gate[S2].
+Puck[PK429] landed in Gate[T12].
+Puck[PK430] landed in Gate[S7].
+Puck[PK431] landed in Gate[T16].
+Puck[PK432] landed in a spare backup gate.
+Puck[PK433] landed in Gate[S8].
+Puck[PK434] landed in a spare backup gate.
+Puck[PK435] landed in Gate[S9].
+Puck[PK436] landed in a spare backup gate.
+Puck[PK437] landed in Gate[T14].
+Puck[PK438] landed in Gate[T22].
+Puck[PK439] landed in Gate[T19].
+Puck[PK440] landed in Gate[S10].
+Puck[PK441] landed in Gate[S18].
+Puck[PK442] landed in Gate[S19].
+Puck[PK443] landed in Gate[S20].
+Puck[PK444] landed in a new backup gate.
+Puck[PK445] landed in a new backup gate.
+Puck[PK446] landed in Gate[S21].
+Puck[PK447] landed in Gate[S22].
+Puck[PK448] landed in Gate[S23].
+Puck[PK449] landed in Gate[S35].
+Puck[PK450] landed in a new backup gate.
+Puck[PK451] landed in a new backup gate.
+Puck[PK452] landed in a new backup gate.
+Puck[PK453] landed in Gate[S36].
+Puck[PK454] landed in Gate[S37].
+Puck[PK455] landed in a new backup gate.
+Puck[PK456] landed in Gate[S38].
+Puck[PK457] landed in Gate[S39].
+Puck[PK458] landed in Gate[S40].
+Puck[PK459] landed in a new backup gate.
+Puck[PK460] landed in Gate[S41].
+Puck[PK461] landed in a new backup gate.
+Puck[PK462] landed in a new backup gate.
+Puck[PK463] landed in a new backup gate.
+Puck[PK464] landed in a new backup gate.
+Puck[PK465] landed in a new backup gate.
+Puck[PK466] landed in a new backup gate.
+Puck[PK467] landed in a new backup gate.
+Puck[PK468] landed in a new backup gate.
+Puck[PK469] landed in a new backup gate.
+Puck[PK470] landed in a new backup gate.
+Puck[PK471] landed in a new backup gate.
+Puck[PK472] landed in a new backup gate.
+Puck[PK473] landed in Gate[S22].
+Puck[PK474] landed in a spare backup gate.
+Puck[PK475] landed in a spare backup gate.
+Puck[PK476] landed in Gate[S20].
+Puck[PK477] landed in Gate[S24].
+Puck[PK478] landed in Gate[S25].
+Puck[PK479] landed in Gate[S26].
+Puck[PK480] landed in Gate[S27].
+Puck[PK481] landed in a new backup gate.
+Puck[PK482] landed in Gate[S21].
+Puck[PK483] landed in a new backup gate.
+Puck[PK484] landed in Gate[S28].
+Puck[PK485] landed in a spare backup gate.
+Puck[PK486] landed in Gate[S19].
+Puck[PK487] landed in a spare backup gate.
+Puck[PK488] landed in a new backup gate.
+Puck[PK489] landed in a new backup gate.
+Puck[PK490] landed in a spare backup gate.
+Puck[PK491] landed in a new backup gate.
+Puck[PK492] landed in a new backup gate.
+Puck[PK493] landed in a new backup gate.
+Puck[PK494] landed in a new backup gate.
+Puck[PK495] landed in a new backup gate.
+Puck[PK496] landed in a new backup gate.
+Puck[PK497] landed in a new backup gate.
+Puck[PK498] landed in a new backup gate.
+Puck[PK499] landed in a new backup gate.
+Puck[PK500] landed in a new backup gate.
+Puck[PK501] landed in a new backup gate.
+Number of gate in the terminal : 67.
+Number of backup gate : 50.

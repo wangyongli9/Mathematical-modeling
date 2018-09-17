@@ -83,10 +83,17 @@ int Solution1Weighted(
 	const std::vector<Gates> & Gate
 )
 {
+	std::ofstream GateUsageFile("GateUsage.csv", std::ios::out);
+	std::ofstream PlaneLandedFile("PlaneLanded.txt", std::ios::out);
+	std::ofstream LandedPlaneNumberNFile("LandedPlaneNumberN.csv", std::ios::out);
+	std::ofstream LandedPlaneNumberWFile("LandedPlaneNumberW.csv", std::ios::out);
+	std::ofstream LandedPlaneRatioNFile("LandedPlaneRatioN.csv", std::ios::out);
+	std::ofstream LandedPlaneRatioWFile("LandedPlaneRatioW.csv", std::ios::out);
+
 	using GateType = std::tuple<PLANE_TYPE, PLANE_TYPE>;
 	std::vector<Gates> NarrowGates;
 	std::vector<Gates> WideGates;
-	
+
 	for (auto & Gate : Gate)
 	{
 		if (Gate.BodyType == BODY_TYPE::N)
@@ -101,7 +108,7 @@ int Solution1Weighted(
 
 	std::map<GateType, std::vector<Gates>> NarrowGateIndex;
 	std::map<GateType, std::vector<Gates>> WideGateIndex;
-	
+
 	for (auto & Gate : NarrowGates)
 	{
 		NarrowGateIndex[std::make_tuple(Gate.ArrivingType, Gate.DepartureType)].push_back(Gate);
@@ -153,7 +160,11 @@ int Solution1Weighted(
 	std::vector<std::pair<Date, Time>> GatesStates(Gate.size(), std::make_pair(Date{ 2018, 1, 1 }, Time{ 0, 0 }));
 	std::vector<bool> GatesUsed(Gate.size(), false);
 	std::vector<Pucks> BackupGate;
+
+	// For counting...
 	int SNum = 0, TNum = 0;
+	std::map<int, std::vector<Pucks>> GatesPlanes;
+	std::vector<int> TimeUsedGates;
 
 	for (size_t i = 0; i < Puck.size(); i++)
 	{
@@ -209,8 +220,11 @@ int Solution1Weighted(
 						if (Gate[GateIndex].Terminal == TERMINAL::S) SNum++;
 						if (Gate[GateIndex].Terminal == TERMINAL::T) TNum++;
 					}
+					GatesPlanes[GateIndex].push_back(Puck[i]);
 
-					printf("Puck[%s] landed in Gate[%s].\n", Puck[i].FerryRecordNumber.c_str(), Gate[GateIndex].BoardingGate.c_str());
+					char Buffer[2048];
+					sprintf(Buffer, "Puck[%s] landed in Gate[%s].\n", Puck[i].FerryRecordNumber.c_str(), Gate[GateIndex].BoardingGate.c_str());
+					PlaneLandedFile << Buffer;
 
 					goto JumpOut;
 				}
@@ -229,7 +243,9 @@ int Solution1Weighted(
 					BackupGate.erase(std::remove(BackupGate.begin(), BackupGate.end(), PuckInBackupGate), BackupGate.end());
 					BackupGate.push_back(Puck[i]);
 					IsFindBackupGate = true;
-					printf("Puck[%s] landed in a spare backup gate.\n", Puck[i].FerryRecordNumber.c_str());
+					char Buffer[2048];
+					sprintf(Buffer, "Puck[%s] landed in a spare backup gate.\n", Puck[i].FerryRecordNumber.c_str());
+					PlaneLandedFile << Buffer;
 					break;
 				}
 			}
@@ -237,7 +253,9 @@ int Solution1Weighted(
 			if (!IsFindBackupGate)
 			{
 				BackupGate.push_back(Puck[i]);
-				printf("Puck[%s] landed in a new backup gate.\n", Puck[i].FerryRecordNumber.c_str());
+				char Buffer[2048];
+				sprintf(Buffer, "Puck[%s] landed in a new backup gate.\n", Puck[i].FerryRecordNumber.c_str());
+				PlaneLandedFile << Buffer;
 			}
 		}
 	}
@@ -251,8 +269,105 @@ int Solution1Weighted(
 		}
 	}
 
-	printf("Number of gate in the terminal : %d.\n", UsedGateNumber);
-	printf("Number of backup gate : %zd.\n", BackupGate.size());
+	for (auto & PlanesInGate : GatesPlanes)
+	{
+		int Time = 0;
+		for (auto & Plane : PlanesInGate.second)
+		{
+			Time += Plane.LandingTime;
+		}
+		TimeUsedGates.push_back(Time);
+	}
+
+	for (size_t i = 0; i < TimeUsedGates.size(); i++)
+	{
+		GateUsageFile << Gate[i].BoardingGate << ", " << TimeUsedGates[i] << std::endl;
+	}
+
+	char Buffer[2048];
+	sprintf(Buffer, "Number of gate in the terminal : %d.\n", UsedGateNumber);
+	PlaneLandedFile << Buffer;
+	sprintf(Buffer, "Number of backup gate : %zd.\n", BackupGate.size());
+	PlaneLandedFile << Buffer;
+
+	Date StartDate = Puck[0].ArrivingDate;
+	Time StartTime = Puck[0].ArrivingTime;
+	Date EndDate = { 2018, 1, 21 };
+	Time EndTime = { 13, 45 };
+	Date CurrDate = StartDate;
+	Time CurrTime = StartTime;
+	std::vector<int> NumberNList;
+	std::vector<int> NumberWList;
+	std::vector<int> BackupNumberNList;
+	std::vector<int> BackupNumberWList;
+
+	for (;CurrTime != EndTime || CurrDate != EndDate;)
+	{
+		int NumberN = 0, NumberW = 0;
+		int BackupNumberN = 0, BackupNumberW = 0;
+
+		for (auto & PlanesInGate : GatesPlanes)
+		{
+			for (auto & Plane : PlanesInGate.second)
+			{
+				if (Minus(CurrDate, CurrTime, Plane.DepartureDate, Plane.DepartureTime) == -1 &&
+					Minus(CurrDate, CurrTime, Plane.ArrivingDate, Plane.ArrivingTime) > 0)
+				{
+					if (GetBodyType(Plane.ModelNumber) == BODY_TYPE::N)
+					{
+						NumberN++;
+					}
+					else
+					{
+						NumberW++;
+					}
+				}
+			}
+		}
+
+		for (auto & Plane : BackupGate)
+		{
+			if (Minus(CurrDate, CurrTime, Plane.DepartureDate, Plane.DepartureTime) == -1 &&
+				Minus(CurrDate, CurrTime, Plane.ArrivingDate, Plane.ArrivingTime) > 0)
+			{
+				if (GetBodyType(Plane.ModelNumber) == BODY_TYPE::N)
+				{
+					BackupNumberN++;
+				}
+				else
+				{
+					BackupNumberW++;
+				}
+			}
+		}
+
+		NumberNList.push_back(NumberN);
+		NumberWList.push_back(NumberW);
+		BackupNumberNList.push_back(BackupNumberN);
+		BackupNumberWList.push_back(BackupNumberW);
+
+		float LandedPlaneRatioN = static_cast<float>(NumberN) / static_cast<float>(NumberN + BackupNumberN);
+		float LandedPlaneRatioW = static_cast<float>(NumberW) / static_cast<float>(NumberW + BackupNumberW);
+		LandedPlaneRatioN = NumberN == 0 ? 0.0f : LandedPlaneRatioN;
+		LandedPlaneRatioW = NumberW == 0 ? 0.0f : LandedPlaneRatioW;
+
+		LandedPlaneNumberNFile << CurrDate.Year << "-" << CurrDate.Month << "-" << CurrDate.Day << ", " << CurrTime.Hour << ":" << CurrTime.Minutes << ", " << NumberN << std::endl;
+		LandedPlaneNumberWFile << CurrDate.Year << "-" << CurrDate.Month << "-" << CurrDate.Day << ", " << CurrTime.Hour << ":" << CurrTime.Minutes << ", " << NumberW << std::endl;
+		LandedPlaneRatioNFile << CurrDate.Year << "-" << CurrDate.Month << "-" << CurrDate.Day << ", " << CurrTime.Hour << ":" << CurrTime.Minutes << ", " << LandedPlaneRatioN << std::endl;
+		LandedPlaneRatioWFile << CurrDate.Year << "-" << CurrDate.Month << "-" << CurrDate.Day << ", " << CurrTime.Hour << ":" << CurrTime.Minutes << ", " << LandedPlaneRatioW << std::endl;
+
+		if (CurrTime.Minutes + 5 < 60) { CurrTime.Minutes += 5; }
+		else if (CurrTime.Hour + 1 < 24) { CurrTime.Hour += 1; CurrTime.Minutes = 5 - (60 - CurrTime.Minutes); }
+		else { CurrDate.Day += 1; CurrTime.Hour = 0; CurrTime.Minutes = CurrTime.Minutes = 5 - (60 - CurrTime.Minutes); }
+	}
+
+
+	GateUsageFile.close();
+	PlaneLandedFile.close();
+	LandedPlaneNumberNFile.close();
+	LandedPlaneNumberWFile.close();
+	LandedPlaneRatioNFile.close();
+	LandedPlaneRatioWFile.close();
 
 	return UsedGateNumber + BackupGate.size();
 }
