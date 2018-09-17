@@ -49,6 +49,26 @@ class Main():
                     gateStatus[index][0] -= 1
                     gateStatus[index][1] += 1
 
+
+    def timeConsumptionFunc(self, planeList, gateList):
+        gateUsePlaneList = []
+        for gate in gateList:
+            gateUsePlane = GateUsePlane(gate)
+            gateUsePlaneList.append(gateUsePlane)
+        for plane in planeList:
+            for gateUsePlane in gateUsePlaneList:
+                
+    def timeCalculate(self):
+class GateUsePlane:
+    def __init__(self, gate):
+        self.plane = None
+        self.gate = gate
+        pass
+    def set(self,plane):
+        self.plane = plane
+    def free(self):
+        self.plane = None
+
 class PlaneQueue(object):
     def __init__(self, priority, plane):
         self.priority = priority
