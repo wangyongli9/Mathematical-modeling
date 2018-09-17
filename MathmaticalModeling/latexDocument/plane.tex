@@ -129,7 +129,67 @@ S_{k+1}=U_{K}\left ( S_{K} \right )
 \end{equation}
 即根据模型当前的状态和决策可以得到模型的下一个状态。
 \subsubsection{带权值的贪心算法模型}
-假设$I$为国际航班，$D$为国内航班，由数据可以知道登机口的类型有如下几种：
+贪心算法又称为贪婪算法，在对问题进行求解时，总是做出当前最优的选择，从而实现某种意义上的局部最优解。问题一中，同一个航班可以
+停靠不同类型的登机口。因此，在确定每次航班所停靠的登机口时，应有目的的选择最优的登机口。在对数据进行统计之后，我们确定了不同登机口的
+权值分配。在整个贪心算法的搜索过程中，往往取权值分配较高的登机口用于停靠，从而获取最优分配方案。
+
+
+
+\subsection{第二问数学模型}
+\subsection{第三问数学模型}
+\subsection{对数据应用模型并求解}
+\subsubsection{单独考虑最小化登机口数量的求解}
+\textbf{(1)动态规划思想的模型}
+
+先将登机口的属性抽象为I-I-W,I-I-N,D-D-W,D-D-N,I-DI-W,I-DI-N,DI-D-W,DI-D-N，D-DI-W,D-DI-N,DI-I-W,DI-I-N,DI-DI-W,DI-DI-N十四种类型，
+然后根据题目中所给表中的数据将每个航班到达时刻当前十四种类型的正在使用数目和空闲数目更新，最后在航班全部到达后统计十四种类型数目的总和并将
+每个时刻类型对应数目存入Excel表。
+
+更新的方法:
+
+以当前到达航班种类为D-D-W为例，设当前状态如下表所示：
+
+\begin{tabular}{|c|c|c|}
+ \hline
+ \makebox[0.3\textwidth][c]{登机口属性}	&  \makebox[0.3\textwidth][c]{正在使用登机口数目}
+&  \makebox[0.3\textwidth][c]{空闲登机口数目} \\ \hline
+ I-I-W	    & 0 & 1  \\ \hline
+ I-I-N	    & 0 & 0  \\ \hline
+ D-D-W	    & 1 & 0 \\ \hline
+ D-D-N      & 0 & 0 \\ \hline
+ I-DI-N     & 0 & 0 \\ \hline
+ I-DI-W     & 0 & 0 \\ \hline
+ DI-D-W     & 1 & 0  \\ \hline
+ DI-D-N     & 2 & 0  \\ \hline
+ D-DI-W     & 1 & 0  \\ \hline
+ D-DI-N     & 0 & 0  \\ \hline
+ DI-I-W     & 3 & 0  \\ \hline
+ DI-I-N     & 0 & 0  \\ \hline
+ DI-DI-W    & 1 & 0  \\ \hline
+ DI-DI-N    & 0 & 0  \\ \hline
+\end{tabular}
+
+
+
+
+查询D-D-W属性登机位得到只有一个正在使用，并且没有空余的登机位，则根据优先级顺序查找空闲登机口。
+先查找D-DI-W发现没有空闲登机口，再查找D-DI-W发现没有空闲登机口，然后查找DI-DI-W发现没有空闲登
+机口，最后查找I-I-W发现有空闲登机口，将I和D合并为DI-DI-W登机口型号，将I-I-W空闲登机口数目置为0，
+将DI-DI-W登机口正在使用的数目置位1。
+
+
+算法的分析：
+
+
+模型需要对python筛选出的303次航班数据进行遍历，每次需要更新二维数
+组，最后得到所有航班到达时所需开启的登机口数目。算法主要时间耗费在遍历上，复杂度为O(n)，模型的算法实现具有可行性，耗费的时间不长。
+
+
+具体代码见附录。
+
+\textbf{（2）带权值的贪心算法模型}
+
+由图2所示，$I$为国际航班，$D$为国内航班，由数据可以知道登机口的类型有如下几种：
 \begin{equation}
     \{I,I\},\{D,D\},\{I,DI\},\{DI,DI\},\{DI,D\},\{D,DI\},\{DI,I\}
 \end{equation}
@@ -193,7 +253,7 @@ $\{I,DI\},\{DI,DI\},\{DI,D\},\{D,DI\},\{DI,I\}$类型的登机口停放这两种
     \end{tabular}
 \end{table*}
 
-带权值的贪心算法模型流程如下图3所示
+在确定不同类型航班的登机口权值之后，整个带权值的贪心算法模型流程如下图3所示
 \begin{figure}[!h]
 \centering
 \includegraphics[width=.9\textwidth]{Figure3.jpg}
@@ -210,60 +270,6 @@ $\{I,DI\},\{DI,DI\},\{DI,D\},\{D,DI\},\{DI,I\}$类型的登机口停放这两种
 \end{itemize}
 
 
-
-\subsection{第二问数学模型}
-\subsection{第三问数学模型}
-\subsection{对数据应用模型并求解}
-\subsubsection{单独考虑最小化登机口数量的求解}
-(1)动态规划思想的模型
-
-先将登机口的属性抽象为I-I-W,I-I-N,D-D-W,D-D-N,I-DI-W,I-DI-N,DI-D-W,DI-D-N，D-DI-W,D-DI-N,DI-I-W,DI-I-N,DI-DI-W,DI-DI-N十四种类型，
-然后根据题目中所给表中的数据将每个航班到达时刻当前十四种类型的正在使用数目和空闲数目更新，最后在航班全部到达后统计十四种类型数目的总和并将
-每个时刻类型对应数目存入Excel表。
-
-更新的方法:
-
-以当前到达航班种类为D-D-W为例，设当前状态如下表所示：
-
-\begin{tabular}{|c|c|c|}
- \hline
- \makebox[0.3\textwidth][c]{登机口属性}	&  \makebox[0.3\textwidth][c]{正在使用登机口数目}
-&  \makebox[0.3\textwidth][c]{空闲登机口数目} \\ \hline
- I-I-W	    & 0 & 1  \\ \hline
- I-I-N	    & 0 & 0  \\ \hline
- D-D-W	    & 1 & 0 \\ \hline
- D-D-N      & 0 & 0 \\ \hline
- I-DI-N     & 0 & 0 \\ \hline
- I-DI-W     & 0 & 0 \\ \hline
- DI-D-W     & 1 & 0  \\ \hline
- DI-D-N     & 2 & 0  \\ \hline
- D-DI-W     & 1 & 0  \\ \hline
- D-DI-N     & 0 & 0  \\ \hline
- DI-I-W     & 3 & 0  \\ \hline
- DI-I-N     & 0 & 0  \\ \hline
- DI-DI-W    & 1 & 0  \\ \hline
- DI-DI-N    & 0 & 0  \\ \hline
-\end{tabular}
-
-
-
-
-查询D-D-W属性登机位得到只有一个正在使用，并且没有空余的登机位，则根据优先级顺序查找空闲登机口。
-先查找D-DI-W发现没有空闲登机口，再查找D-DI-W发现没有空闲登机口，然后查找DI-DI-W发现没有空闲登
-机口，最后查找I-I-W发现有空闲登机口，将I和D合并为DI-DI-W登机口型号，将I-I-W空闲登机口数目置为0，
-将DI-DI-W登机口正在使用的数目置位1。
-
-
-算法的分析：
-
-
-模型需要对python筛选出的303次航班数据进行遍历，每次需要更新二维数
-组，最后得到所有航班到达时所需开启的登机口数目。算法主要时间耗费在遍历上，复杂度为O(n)，模型的算法实现具有可行性，耗费的时间不长。
-
-
-具体代码见附录。
-
-
 \subsection{考虑中转旅客最短流程时间的求解}
 \subsection{考虑中转旅客的换乘时间的求解}
 \section{模型的评价}
@@ -273,31 +279,6 @@ $\{I,DI\},\{DI,DI\},\{DI,D\},\{D,DI\},\{DI,I\}$类型的登机口停放这两种
 \subsection{模型的改进}
 \subsection{模型的推广}
 
-
-
-
-\subsection{对数据应用模型并求解}
-\subsubsection{单独考虑最小化登机口数量的求解}
-(1)动态规划思想的模型
-
-先将登机口的属性抽象为II-W,II-N,ID-W,ID-N,DI-W,DI-N,DD-W,DD-N八种类型，然后根据题目中所给表中的数据将每个航班到达时刻
-当前八种类型的正在使用数目和空闲数目更新，统计八种类型数目的总和并将每个时刻类型对应数目存入Excel表以作后续分析。模型需要
-对python筛选出的303次航班数据进行遍历，每次需要更新二维数组，并将每次结果存入临时数组。算法主要时间耗费在遍历上，复杂度为O(n)，
-模型的实现具有可行性，耗费的时间不长。
-具体代码见附录
-
-
-\subsection{考虑中转旅客最短流程时间的求解}
-\subsection{考虑中转旅客的换乘时间的求解}
-\section{模型的评价}
-\subsection{模型的优点}
-
-\subsection{模型的缺点}
-\subsection{模型的改进}
-\subsection{模型的推广}
-
-\bibliographystyle{gmcm}
-\bibliography{example}
 
 
 
